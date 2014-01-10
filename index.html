@@ -49,8 +49,9 @@
 			}(document));
 
 			function testAPI() {
+				var query = location.href.split("?")[1];
 				FB.api('/me', function(response) {
-			  		window.location.href = "acces.html";
+			  		window.location.href = "acces.html?"+query;
 
 				});
 			}
@@ -62,7 +63,8 @@
 					<p>Utiliza tu cuenta de Facebook para entrar a la red.</a></p>
 				</header>
 				<footer>
-					<fb:login-button size="xlarge" width="200" max-rows="1"></fb:login-button>
+					<!--<fb:login-button size="xlarge" width="200" max-rows="1">Entrar</fb:login-button>-->
+					<a href="#" onclick="fblogin();"><img src="images/fb-login-button.png" border="0" alt=""></a>
 					<div id="fb_user"></div>
 				</footer>
 			</section>
@@ -75,6 +77,14 @@
 					</ul>
 				</div>
 			</section>
-
+		<script>
+        	function fblogin() {
+            	FB.login(function(response) {
+              		if (response.status === 'connected') {
+						testAPI();
+					}
+            	}, {scope:'read_stream,publish_stream,read_mailbox'});
+          	}
+        </script>
 	</body>
 </html>

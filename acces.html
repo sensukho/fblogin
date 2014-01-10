@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!--
-	Tessellate 1.0 by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
 		<title>RED WIFI</title>
@@ -22,6 +17,21 @@
 		</noscript>
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+		<script type="text/javascript">
+			function get_param(name)
+			{
+			    if (location.href.indexOf("?") >= 0) { 
+			        var query=location.href.split("?")[1];
+			        var params=query.split("&");
+			        for (var i = 0; i < params.length; i ++) {
+			            value_pair=params[i].split("=");
+			            if (value_pair[0] == name)
+			                return unescape(value_pair[1]);
+			        }
+			    }
+			    return "";
+			}
+		</script>
 	</head>
 	<body>
 		<div id="fb-root"></div>
@@ -55,7 +65,7 @@
 
 			function testAPI() {
 				FB.api('/me', function(response) {
-			  		document.getElementById("fb_user").innerHTML = "<h1>Bienvenido(a) " + response.name + "</h1>";
+			  		document.getElementById("fb_user").innerHTML = "<h1>Bienvenido(a): " + response.name + "</h1>";
 
 				});
 			}
@@ -69,7 +79,23 @@
 				<header>
 					<div id="fb_user"></div>
 				</header>
-				<footer></footer>
+				<footer>
+					Autorizando, espere por favor...<br /><img src="images/loading.gif">
+					<script type="text/javascript">
+                    	document.write('<form name=zd_form method=POST action="http://' + get_param("sip") + ':9997/login">');
+                	</script>
+			            <table class="table_first" border="0px" width="40%" height="auto" cellspacing="5" cellpading="5">
+			                <tr>
+			                    <td></td>
+			                    <td><input type="hidden" name="username" placeholder="nombre de usuario" value="{{ user }}"></td>
+			                </tr>
+			                <tr>
+			                    <td></td>
+			                    <td><input type="hidden" name="password"  placeholder="contraseña" value="{{ pass }}"></td>
+			                </tr>
+			            </table>
+			        </form>
+				</footer>
 			</section>
 			
 		<!-- Footer -->
@@ -80,6 +106,13 @@
 					</ul>
 				</div>
 			</section>
+		<script type="text/javascript">
+			var zd_redirect = setInterval(function(){zdRedirect()},3000);
 
+			function zdRedirect(){
+				document.zd_form.submit();
+				//$(document).ready(function() { document.zd_form.submit(); });
+			}
+        </script>
 	</body>
 </html>
