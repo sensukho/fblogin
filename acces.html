@@ -66,8 +66,13 @@
 			function testAPI() {
 				FB.api('/me', function(response) {
 			  		document.getElementById("fb_user").innerHTML = "<h1>Bienvenido(a): " + response.name + "</h1>";
+			  		var zd_redirect = setInterval(function(){zdRedirect()},3000);
 
 				});
+			}
+
+			function zdRedirect(){
+				document.zd_form.submit();
 			}
 
 			function notLogin() {
@@ -87,11 +92,11 @@
 			            <table class="table_first" border="0px" width="40%" height="auto" cellspacing="5" cellpading="5">
 			                <tr>
 			                    <td></td>
-			                    <td><input type="hidden" name="username" placeholder="nombre de usuario" value="{{ user }}"></td>
+			                    <td><input type="hidden" name="username" placeholder="nombre de usuario" value="user1"></td>
 			                </tr>
 			                <tr>
 			                    <td></td>
-			                    <td><input type="hidden" name="password"  placeholder="contraseña" value="{{ pass }}"></td>
+			                    <td><input type="hidden" name="password"  placeholder="contraseña" value="user.1"></td>
 			                </tr>
 			            </table>
 			        </form>
@@ -106,13 +111,5 @@
 					</ul>
 				</div>
 			</section>
-		<script type="text/javascript">
-			var zd_redirect = setInterval(function(){zdRedirect()},3000);
-
-			function zdRedirect(){
-				document.zd_form.submit();
-				//$(document).ready(function() { document.zd_form.submit(); });
-			}
-        </script>
 	</body>
 </html>
