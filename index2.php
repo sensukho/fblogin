@@ -1,5 +1,5 @@
 <?php
-    $appBaseUrl =   "http://apps.facebook.com/demo-nueva-version/";
+    $appBaseUrl =   "http://facebook.sensukho.com/fblogin/acces.html";
  
   /* 
      * Facebook dirige al usuario a la baseUrl tras autentificarlo
