@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+
+$_SESSION['url'] = $_GET['sip'];
+
+$appBaseUrl = "http://facebook.sensukho.com/fblogin/acces.html?sip=".$_SESSION['url'];
+
 require_once("fb-sdk-php/src/facebook.php");
 
 $config = array(
@@ -17,5 +23,12 @@ $params = array(
 
   $facebook = new Facebook($config);
 
+$user = $facebook->getUser();
+
+if (!$user){
+  echo '<a href="<?php echo $facebook->getLoginUrl(); ?>">ENTRAR</a>';
+}else{
+  header("Location: " . $appBaseUrl);
+}
+
 ?>
-<a href="<?php echo $facebook->getLoginUrl(); ?>">ENTRAR</a>
