@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>RED WIFI</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href="http://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic" rel="stylesheet" type="text/css" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-wide.css" />
+		</noscript>
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+	</head>
+	<body>
+		<div id="fb-root"></div>
+		<script>
+			window.fbAsyncInit = function() {
+				FB.init({
+				appId      : '443525242405417',
+				status     : true,
+				cookie     : true,
+				xfbml      : true
+				});
+
+				FB.Event.subscribe('auth.authResponseChange', function(response) {
+					if (response.status === 'connected') {
+						//testAPI();
+					} else if (response.status === 'not_authorized') {
+						FB.login();
+					} else {
+						FB.login();
+					}
+				});
+			};
+
+			(function(d){
+				var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+				if (d.getElementById(id)) {return;}
+				js = d.createElement('script'); js.id = id; js.async = true;
+				js.src = "//connect.facebook.net/es_LA/all.js";
+				ref.parentNode.insertBefore(js, ref);
+			}(document));
+
+			function testAPI() {
+				var query = location.href.split("?")[1];
+				FB.api('/me', function(response) {
+			  		window.location.href = "acces.html?"+query;
+
+				});
+			}
+		</script>
+		<!-- Header -->
+			<section id="header" class="dark">
+				<header>
+					<h1>Bienvenido a la red WiFi</h1>
+					<p>Utiliza tu cuenta de Facebook para entrar a la red.</a></p>
+				</header>
+				<footer>
+					<!--<fb:login-button size="xlarge" width="200" max-rows="1">Entrar</fb:login-button>-->
+					<a href="#" onclick="fblogin();"><img src="images/fb-login-button.png" border="0" alt=""></a>
+					<div id="fb_user"></div>
+				</footer>
+			</section>
+			
+		<!-- Footer -->
+			<section id="footer">
+				<div class="copyright">
+					<ul class="menu">
+						<li>&copy; Sensukho.</li>
+					</ul>
+				</div>
+			</section>
+		<script>
+        	function fblogin() {
+            	FB.login(function(response) {
+              		if (response.status === 'connected') {
+						testAPI();
+					}
+            	}, {scope:'read_stream,publish_stream,read_mailbox'});
+          	}
+        </script>
+	</body>
+</html>

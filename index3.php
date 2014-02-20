@@ -4,7 +4,7 @@ session_start();
 
 $_SESSION['url'] = $_GET['sip'];
 
-$appBaseUrl = "http://facebook.sensukho.com/fblogin/acces.html?sip=".$_SESSION['url'];
+$appBaseUrl = "http://189.203.102.52:1780/fblogin/acces.html?sip=".$_SESSION['url'];
 
 require_once("fb-sdk-php/src/facebook.php");
 
