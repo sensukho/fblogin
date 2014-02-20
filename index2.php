@@ -19,7 +19,7 @@ if ($user) {
   $logoutUrl = $facebook->getLogoutUrl();
 }else {
   $loginUrl = $facebook->getLoginUrl(array(
-                'scope' => 'email,publish_stream,user_birthday,user_location,user_work_history,user_about_me,user_hometown'
+                'scope' => 'email,user_birthday'
             ));
 }
  

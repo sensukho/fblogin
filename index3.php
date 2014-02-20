@@ -21,7 +21,7 @@ $params = array(
 	'display' => ' popup'
 );
 
-  $facebook = new Facebook($config);
+$facebook = new Facebook($config);
 
 $user = $facebook->getUser();
 
