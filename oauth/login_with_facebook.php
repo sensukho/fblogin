@@ -1,14 +1,11 @@
 <?php
-/*
- * login_with_facebook.php
- *
- * @(#) $Id: login_with_facebook.php,v 1.3 2013/07/31 11:48:04 mlemos Exp $
- *
- */
 
-	/*
-	 *  Get the http.php file from http://www.phpclasses.org/httpclient
-	 */
+	session_start();
+
+	$_SESSION['url'] = $_GET['sip'];
+
+	$_SESSION['appBaseUrl'] = $_SERVER['HTTP_HOST']."/fblogin/acces.html?sip=".$_SESSION['url'];
+
 	require('http.php');
 	require('oauth_client.php');
 
@@ -16,9 +13,8 @@
 	$client->debug = false;
 	$client->debug_http = true;
 	$client->server = 'Facebook';
-	$client->redirect_uri = 'http://'.$_SERVER['HTTP_HOST'].
-		dirname(strtok($_SERVER['REQUEST_URI'],'?')).'/login_with_facebook.php';
-
+	//$client->redirect_uri = 'http://'.$_SERVER['HTTP_HOST'].dirname(strtok($_SERVER['REQUEST_URI'],'?')).'/login_with_facebook.php';
+	$client->redirect_uri = 'http://'.$_SESSION['appBaseUrl'];
 	$client->client_id = '443525242405417'; $application_line = __LINE__;
 	$client->client_secret = '79a26666bce7a0b4570e85f770fd5e17';
 
